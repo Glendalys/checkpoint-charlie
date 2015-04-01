@@ -11,8 +11,32 @@ describe "Part 1b: Your Array of Universities" do
   # | Indiana    | 300       | 135      | 165      |
   # | Notre Dame | 500       | 220      | 230      |
   # | Toledo     | 404       | 180      | 224      |
+  purdue_args = {
+    name: "Purdue",
+    applied: 170,
+    rejected: 90,
+    accepted: 80
+  }
+  indiana_args = {
+    name: "Indiana",
+    applied: 300,
+    rejected: 135,
+    accepted: 165
+  }
+  notre_dame_args = {
+    name: "Notre Dame",
+    applied: 500,
+    rejected: 220,
+    accepted: 230
+  }
+  toledo_args = {
+    name: "Toledo",
+    applied: 404,
+    rejected: 180,
+    accepted: 224
+  }
 
-  let(:universities) {}
+  let(:universities) {[University.new(purdue_args), University.new(indiana_args), University.new(notre_dame_args), University.new(toledo_args)]}
 
   it 'should have a length of four' do
     expect(universities.length).to eq(4)
