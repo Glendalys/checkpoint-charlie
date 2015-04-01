@@ -1,0 +1,7 @@
+INSERT INTO "coats" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2015-04-01 15:28:07.770355"], ["updated_at", "2015-04-01 15:28:07.770355"]]
+
+INSERT INTO "coats" ("brand", "color", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["brand", "Coat Dude"], ["color", "black"], ["created_at", "2015-04-01 15:30:19.514042"], ["updated_at", "2015-04-01 15:30:19.514042"]]
+
+INSERT INTO "stores" ("created_at", "location", "name", "updated_at", "years_since_first_opened") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-04-01 15:33:03.304014"], ["location", "New York"], ["name", "Coats and Stuff, Etc."], ["updated_at", "2015-04-01 15:33:03.304014"], ["years_since_first_opened", 10]]
+
+ INSERT INTO "stores" ("created_at", "location", "name", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-04-01 15:37:41.875658"], ["location", "New York"], ["name", "Swanson Coat Emporium"], ["updated_at", "2015-04-01 15:37:41.875658"]]
