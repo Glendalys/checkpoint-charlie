@@ -13,3 +13,12 @@ class University
   end
 
 end
+
+
+def low_acceptance_count(universities)
+  low_acceptance_array = []
+  for university in universities
+      low_acceptance_array << university.name if university.acceptance_rate < 50
+  end
+  low_acceptance_array.length
+end
