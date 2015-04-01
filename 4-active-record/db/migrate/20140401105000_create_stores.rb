@@ -4,7 +4,7 @@ class CreateStores < ActiveRecord::Migration
       t.string :name
       t.string :location
       t.string :years_open
-      t.string :coat_id
+      # t.string :coat_id
 
       t.timestamps
     end
