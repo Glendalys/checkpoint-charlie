@@ -1,0 +1,10 @@
+irb(main):001:0> Store
+=> Store(id: integer, name: string, location: string, years_open: integer, created_at: datetime, updated_at: datetime)
+irb(main):002:0> Coat
+=> Coat(id: integer, brand: string, style: string, size: string, color: string, price: decimal, created_at: datetime, updated_at: datetime)
+irb(main):003:0> Store.all
+D, [2015-04-01T11:03:03.856128 #55554] DEBUG -- :   Store Load (0.4ms)  SELECT "stores".* FROM "stores"
+=> #<ActiveRecord::Relation []>
+irb(main):004:0> Coat.all
+D, [2015-04-01T11:03:08.043528 #55554] DEBUG -- :   Coat Load (0.4ms)  SELECT "coats".* FROM "coats"
+=> #<ActiveRecord::Relation []>
