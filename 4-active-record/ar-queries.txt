@@ -1,0 +1,53 @@
+
+#
+# From my seeds.rb
+#
+
+require_relative '../app/models/coat'
+require_relative '../app/models/store'
+require_relative '../app/models/storage'
+require 'faker'
+
+15.times do
+  coat_details = { :brand => Faker::Name.last_name,
+                   :color => Faker::Commerce.color,
+                   :length => Faker::Number.digit,
+                   :price => Faker::Commerce.price }
+
+  Coat.create(coat_details)
+end
+
+5.times do
+  store_details = { :name => Faker::Company.name,
+                    :location => "#{Faker::Address.city}, #{Faker::Address.state_abbr}" ,
+                    :years_open => Faker::Number.number(2) }
+  Store.create(store_details)
+end
+
+Storage.create({:store_id => 1, :coat_id => 1})
+Storage.create({:store_id => 1, :coat_id => 2})
+Storage.create({:store_id => 1, :coat_id => 3})
+Storage.create({:store_id => 2, :coat_id => 2})
+Storage.create({:store_id => 2, :coat_id => 4})
+Storage.create({:store_id => 2, :coat_id => 6})
+
+
+irb(main):007:0> Coat.find(2).stores
+D, [2015-04-01T11:39:53.628270 #4830] DEBUG -- :   Coat Load (0.1ms)  SELECT  "coats".* FROM "coats"  WHERE "coats"."id" = ? LIMIT 1  [["id", 2]]
+D, [2015-04-01T11:39:53.629450 #4830] DEBUG -- :   Store Load (0.1ms)  SELECT "stores".* FROM "stores" INNER JOIN "storages" ON "stores"."id" = "storages"."store_id" WHERE "storages"."coat_id" = ?  [["coat_id", 2]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Store id: 1, name: "Stiedemann, Hegmann and Waters", location: "Georgettefurt, WY", years_open: 0, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">, #<Store id: 2, name: "Lubowitz, Schoen and Rolfson", location: "Lindville, VT", years_open: 56, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">]>
+
+irb(main):009:0> Coat.find(1).stores
+D, [2015-04-01T11:40:18.579457 #4830] DEBUG -- :   Coat Load (0.2ms)  SELECT  "coats".* FROM "coats"   ORDER BY "coats"."id" ASC LIMIT 1
+D, [2015-04-01T11:40:18.580723 #4830] DEBUG -- :   Store Load (0.1ms)  SELECT "stores".* FROM "stores" INNER JOIN "storages" ON "stores"."id" = "storages"."store_id" WHERE "storages"."coat_id" = ?  [["coat_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Store id: 1, name: "Stiedemann, Hegmann and Waters", location: "Georgettefurt, WY", years_open: 0, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">]>
+
+irb(main):010:0> Store.find(1).coats
+D, [2015-04-01T11:40:39.482875 #4830] DEBUG -- :   Store Load (0.2ms)  SELECT  "stores".* FROM "stores"  WHERE "stores"."id" = ? LIMIT 1  [["id", 1]]
+D, [2015-04-01T11:40:39.484097 #4830] DEBUG -- :   Coat Load (0.1ms)  SELECT "coats".* FROM "coats" INNER JOIN "storages" ON "coats"."id" = "storages"."coat_id" WHERE "storages"."store_id" = ?  [["store_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Coat id: 1, brand: "Fisher", color: "gold", length: 1, price: #<BigDecimal:7fad429d82e8,'0.6915E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">, #<Coat id: 2, brand: "Orn", color: "white", length: 4, price: #<BigDecimal:7fad429d1010,'0.6954E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">, #<Coat id: 3, brand: "Rippin", color: "green", length: 2, price: #<BigDecimal:7fad429caee0,'0.2943E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">]>
+
+irb(main):011:0> Store.find(2).coats
+D, [2015-04-01T11:41:01.058054 #4830] DEBUG -- :   Store Load (0.2ms)  SELECT  "stores".* FROM "stores"  WHERE "stores"."id" = ? LIMIT 1  [["id", 2]]
+D, [2015-04-01T11:41:01.059278 #4830] DEBUG -- :   Coat Load (0.1ms)  SELECT "coats".* FROM "coats" INNER JOIN "storages" ON "coats"."id" = "storages"."coat_id" WHERE "storages"."store_id" = ?  [["store_id", 2]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Coat id: 2, brand: "Orn", color: "white", length: 4, price: #<BigDecimal:7fad42980d40,'0.6954E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">, #<Coat id: 4, brand: "Reynolds", color: "cyan", length: 0, price: #<BigDecimal:7fad4297b160,'0.2424E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">, #<Coat id: 6, brand: "Schroeder", color: "mint green", length: 6, price: #<BigDecimal:7fad42978190,'0.3256E2',18(36)>, created_at: "2015-04-01 15:36:30", updated_at: "2015-04-01 15:36:30">]>
