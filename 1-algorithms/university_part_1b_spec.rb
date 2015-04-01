@@ -12,19 +12,19 @@ describe "Part 1b: Your Array of Universities" do
   # | Notre Dame | 500       | 220      | 230      |
   # | Toledo     | 404       | 180      | 224      |
 
-  let(:universities) {}
+  let(:universities) {[University.new("Purdue",80, 90), University.new("Indiana", 165, 135), University.new("Notre Dame", 230, 220), University.new("Toledo", 224, 180)]}
 
   it 'should have a length of four' do
     expect(universities.length).to eq(4)
   end
 
   #What's a good name for this test? Give it one.
-  it 'you need to name this test! #1' do
+  it 'should have each input be an instance of the Univeristy class' do
     expect(universities.all?{ |university| university.class == University }).to be(true)
   end
 
   #Give a good name for this test too!
-  it 'you need to name this test! #2' do
+  it 'should more than 0 stats for each university' do
     stats = universities.map(&:application_stats).map(&:values).flatten.all? { |stat| stat > 0 }
     expect(stats).to be(true)
   end
