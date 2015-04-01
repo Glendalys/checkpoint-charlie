@@ -12,7 +12,7 @@ class University
   end
 
   def low_acceptance
-    acceptance_rate < 50 ? true : false
+    acceptance_rate < 50
   end
 
 end
