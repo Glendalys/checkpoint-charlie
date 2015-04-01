@@ -21,7 +21,8 @@ describe Actor do
     expect(actor.birth_name).to eq("William Bradley Pitt")
   end
 
-  pending 'should have a photo' do
+  it'should have a photo' do
+    #expect(actor.photo.url).to eq("http://awesome.com/brad" )
     #Write a test to show that Actor#photo returns a Photo
     #Remember to change "pending" to "it" when you're ready to run this test
   end
