@@ -1,6 +1,6 @@
 require_relative 'university.rb'
 
-describe "Part 1a: A University named Purdue" do
+describe "University" do
   # Your University should be named `"Purdue" and have the following application stats:
 
   # | status    |           |
@@ -9,8 +9,15 @@ describe "Part 1a: A University named Purdue" do
   # | rejected  | 90        |
   # | accepted  | 80        |
 
+
+  PerdueStats = {"name" => "Perdue",
+                 "applied"=> 170,
+                 "rejected"=> 90,
+                 "accepted"=> 80
+                 }
+
   # You'll need to fill in this `let` block:
-  let(:university) {}
+  let(:university) {University.new(PerdueStats)}
 
   it 'should have a name' do
     expect(university.name).to eq("Purdue")
