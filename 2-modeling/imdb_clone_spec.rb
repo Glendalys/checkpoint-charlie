@@ -56,8 +56,6 @@ describe Movie do
   end
 
   it 'should have a photo' do
-    #Write a test to show that Movie#photo returns a Photo
-    #Remember to change "pending" to "it" when you're ready to run this test
     expect(movie.photo.class).to eq Photo
 
   end

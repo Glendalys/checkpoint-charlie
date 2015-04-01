@@ -1,7 +1,3 @@
-# require "pry"
-# Put your implementation here.
-# The tests in the spec file are your guide.
-
 class Actor
   attr_reader :first_name, :last_name, :birth_name, :photo
   def initialize(args)
@@ -29,11 +25,3 @@ class Photo
     @url = photo_url
   end
 end
-
-p brad = Actor.new( {:first_name => "Brad",
-               :last_name => "Pitt",
-               :birth_name => "William Bradley Pitt",
-               :photo_name => "oscars",
-               :photo_url => "http://awesome.com/brad" })
-
-p brad.photo
