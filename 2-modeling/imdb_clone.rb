@@ -14,3 +14,17 @@ class Actor
   end
 
 end
+
+class Movie
+
+  def initialize(name, synopsis, release_year, photo_name, photo_url)
+
+    @name = name
+    @synopsis = synopsis
+    @release_year = release_year
+    @photo_name = photo_name
+    @photo_url = photo_url
+
+  end
+
+end
