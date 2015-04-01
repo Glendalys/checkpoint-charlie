@@ -13,3 +13,58 @@ new_coat = Coat.new(brand: "Ryan's Rival Coats", color: "blue", length: 36, pric
 new_coat.create_store(name: "The Other Store", location: "Riverside, CA", years_since_opened: 3)
 new_coat.save
 
+CREATE TABLE stores
+  (id integer primary key autoincrement,
+  name varchar(64) NOT NULL,
+  location varchar(64) NOT NULL,
+  years_since_opened integer NOT NULL,
+  created_at DATETIME,
+  updated_at DATETIME
+  );
+
+CREATE TABLE coats
+  (id integer primary key autoincrement,
+  brand varchar(64) NOT NULL,
+  color varchar(64) NOT NULL,
+  length integer NOT NULL,
+  price decimal,
+  store_id integer NOT NULL,
+  created_at DATETIME,
+  updated_at DATETIME
+  );
+
+insert into stores
+(name, location, years_since_opened, created_at, updated_at)
+values
+("Ben's Best Coat Store", "Brooklyn, NY", 13, DATETIME('now'), DATETIME('now'));
+
+insert into coats
+(brand, color, length, price, store_id, created_at, updated_at)
+values
+("Ben's Bustling Coats", "red", 34, 100.23, 1, DATETIME('now'), DATETIME('now'));
+
+select * from coats
+where id = 1;
+
+update coats
+set length = "test"
+where id = 1;
+
+Don't really know how to recreate valid? call
+
+insert into coats
+(brand, color, length, price, store_id, created_at, updated_at)
+values
+("Ryan's Rival Coats", "blue", 36, 123.42, "", DATETIME('now'), DATETIME('now'));
+
+insert into stores
+(name, location, years_since_opened, created_at, updated_at)
+values
+("The Other Store", "Riverside, CA", 3, DATETIME('now'), DATETIME('now'));
+
+update coats
+set store_id = 2
+where id = 2;
+
+
+
