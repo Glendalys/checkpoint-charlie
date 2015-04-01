@@ -11,15 +11,7 @@ class Actor
     @birth_name = args[:birth_name]
     @photo_name = args[:photo_name]
     @photo_url = args[:photo_url]
-    @photo = [@photo_name, @photo_url]
-  end
-
-  def self.name
-    self[0]
-  end
-
-  def self.url
-    self[1]
+    @photo = {"name" => args[:photo_name], "url" => args[:photo_url]}
   end
 
 end
@@ -37,4 +29,10 @@ class Movie
     @photo = {"name" => @photo_name, "url" => @photo_url}
   end
 
+end
+
+class Hash
+  def method_missing(n)
+    self[n.to_s]
+  end
 end
