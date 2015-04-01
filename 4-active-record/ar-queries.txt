@@ -1,40 +1,42 @@
-irb(main):001:0> Store
-=> Store(id: integer, name: string, location: string, years_open: integer, created_at: datetime, updated_at: datetime)
-irb(main):002:0> Coat
-=> Coat(id: integer, brand: string, style: string, size: string, color: string, price: decimal, created_at: datetime, updated_at: datetime)
-irb(main):003:0> Store.all
-D, [2015-04-01T11:03:03.856128 #55554] DEBUG -- :   Store Load (0.4ms)  SELECT "stores".* FROM "stores"
-=> #<ActiveRecord::Relation []>
-irb(main):004:0> Coat.all
-D, [2015-04-01T11:03:08.043528 #55554] DEBUG -- :   Coat Load (0.4ms)  SELECT "coats".* FROM "coats"
-=> #<ActiveRecord::Relation []>
-irb(main):002:0> store = Store.new
+irb(main):003:0> store = Store.new
 => #<Store id: nil, name: nil, location: nil, years_open: nil, created_at: nil, updated_at: nil>
-irb(main):003:0> store.name = "Macy's"
+irb(main):005:0> store.name = "Macy's"
 => "Macy's"
-irb(main):004:0> store.location = "NYC"
+irb(main):006:0> store.location = "NYC"
 => "NYC"
-irb(main):005:0> store.years_open = "27"
-=> "27"
-irb(main):006:0> store.save
-D, [2015-04-01T11:05:34.695023 #55670] DEBUG -- :    (0.2ms)  begin transaction
-D, [2015-04-01T11:05:34.700904 #55670] DEBUG -- :   SQL (0.5ms)  INSERT INTO "stores" ("created_at", "location", "name", "updated_at", "years_open") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-04-01 15:05:34.697700"], ["location", "NYC"], ["name", "Macy's"], ["updated_at", "2015-04-01 15:05:34.697700"], ["years_open", 27]]
-D, [2015-04-01T11:05:34.702343 #55670] DEBUG -- :    (1.0ms)  commit transaction
+irb(main):007:0> store.years_open = "100"
+=> "100"
+irb(main):008:0> store
+=> #<Store id: nil, name: "Macy's", location: "NYC", years_open: 100, created_at: nil, updated_at: nil>
+irb(main):009:0> store.save
+D, [2015-04-01T11:57:00.061497 #59794] DEBUG -- :    (0.2ms)  begin transaction
+D, [2015-04-01T11:57:00.067830 #59794] DEBUG -- :   SQL (0.5ms)  INSERT INTO "stores" ("name", "location", "years_open", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Macy's"], ["location", "NYC"], ["years_open", 100], ["created_at", "2015-04-01 15:57:00.064319"], ["updated_at", "2015-04-01 15:57:00.064319"]]
+D, [2015-04-01T11:57:00.073809 #59794] DEBUG -- :    (5.3ms)  commit transaction
 => true
-irb(main):001:0> coat = Coat.new
-=> #<Coat id: nil, brand: nil, style: nil, size: nil, color: nil, price: nil, created_at: nil, updated_at: nil>
-irb(main):002:0> coat.brand = "JCREW"
+irb(main):010:0> coat = Coat.new
+=> #<Coat id: nil, brand: nil, style: nil, size: nil, color: nil, price: nil, store_id: nil, created_at: nil, updated_at: nil>
+irb(main):011:0> coat.brand = "JCREW"
 => "JCREW"
-irb(main):003:0> coat.style = "Peacoat"
+irb(main):012:0> coat.style = "Peacoat"
 => "Peacoat"
-irb(main):004:0> coat.size = "m"
+irb(main):013:0> coat.size = "m"
 => "m"
-irb(main):005:0> coat.color = "Black"
+irb(main):014:0> coat.color = "Black"
 => "Black"
-irb(main):006:0> coat.price = 29
-=> 29
-irb(main):007:0> coat.save
-D, [2015-04-01T11:20:05.860018 #56801] DEBUG -- :    (0.2ms)  begin transaction
-D, [2015-04-01T11:20:05.866106 #56801] DEBUG -- :   SQL (0.5ms)  INSERT INTO "coats" ("brand", "color", "created_at", "price", "size", "style", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["brand", "JCREW"], ["color", "Black"], ["created_at", "2015-04-01 15:20:05.862726"], ["price", 29], ["size", "m"], ["style", "Peacoat"], ["updated_at", "2015-04-01 15:20:05.862726"]]
-D, [2015-04-01T11:20:05.868013 #56801] DEBUG -- :    (1.4ms)  commit transaction
+irb(main):015:0> coat.price = "29"
+=> "29"
+irb(main):016:0> coat.store = store
+=> #<Store id: 1, name: "Macy's", location: "NYC", years_open: 100, created_at: "2015-04-01 15:57:00", updated_at: "2015-04-01 15:57:00">
+irb(main):017:0> coat.store
+=> #<Store id: 1, name: "Macy's", location: "NYC", years_open: 100, created_at: "2015-04-01 15:57:00", updated_at: "2015-04-01 15:57:00">
+irb(main):018:0> coat.store_id
+=> 1
+irb(main):019:0> coat.save
+D, [2015-04-01T11:58:11.137740 #59794] DEBUG -- :    (0.2ms)  begin transaction
+D, [2015-04-01T11:58:11.140972 #59794] DEBUG -- :   SQL (0.9ms)  INSERT INTO "coats" ("brand", "style", "size", "color", "price", "store_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["brand", "JCREW"], ["style", "Peacoat"], ["size", "m"], ["color", "Black"], ["price", 29], ["store_id", 1], ["created_at", "2015-04-01 15:58:11.138803"], ["updated_at", "2015-04-01 15:58:11.138803"]]
+D, [2015-04-01T11:58:11.506486 #59794] DEBUG -- :    (364.7ms)  commit transaction
 => true
+irb(main):008:0> store.coats
+D, [2015-04-01T12:00:28.524911 #60040] DEBUG -- :   Coat Load (0.2ms)  SELECT "coats".* FROM "coats" WHERE "coats"."store_id" = ?  [["store_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Coat id: 1, brand: "JCREW", style: "Peacoat", size: "m", color: "Black", price: 29, store_id: 1, created_at: "2015-04-01 15:58:11", updated_at: "2015-04-01 15:58:11">]>
+

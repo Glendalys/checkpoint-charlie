@@ -6,6 +6,7 @@ class CreateCoats < ActiveRecord::Migration
       t.string :size, null: false, limit: 1
       t.string :color, null: false
       t.integer :price, null: false
+      t.integer :store_id
 
       t.timestamps
     end
