@@ -8,7 +8,6 @@ describe "University" do
                  "accepted"=> 80
                  }
 
-  # You'll need to fill in this `let` block:
   let(:university) {University.new(PurdueStats)}
 
   it 'should have a name' do

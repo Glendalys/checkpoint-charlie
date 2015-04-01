@@ -14,7 +14,7 @@ class University
   end
 
   def acceptance_rate
-    return (@accepted.to_f/@applied * 100).floor
+    (@accepted.to_f/@applied * 100).floor
   end
 
 end
