@@ -1,0 +1,12 @@
+
+irb(main):002:0> Coat.create(brand: "Tim")
+D, [2015-04-01T11:21:47.934506 #22261] DEBUG -- :    (0.2ms)  begin transaction
+D, [2015-04-01T11:21:47.938828 #22261] DEBUG -- :   SQL (0.6ms)  INSERT INTO "coats" ("brand") VALUES (?)  [["brand", "Tim"]]
+D, [2015-04-01T11:21:47.941203 #22261] DEBUG -- :    (1.8ms)  commit transaction
+=> #<Coat id: 1, brand: "Tim", color: nil, length: nil, price: nil, store_id: nil, coat_type_id: nil>
+irb(main):003:0> Store.create(name: "Howdy")
+D, [2015-04-01T11:22:32.016636 #22261] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T11:22:32.017854 #22261] DEBUG -- :   SQL (0.5ms)  INSERT INTO "stores" ("name") VALUES (?)  [["name", "Howdy"]]
+D, [2015-04-01T11:22:32.023079 #22261] DEBUG -- :    (4.9ms)  commit transaction
+=> #<Store id: 1, name: "Howdy", location: nil, years_opened: nil, coat_type_1: nil, coat_type_2: nil, coat_type_3: nil>
+irb(main):004:0>
