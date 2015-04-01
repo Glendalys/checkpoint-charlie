@@ -5,8 +5,8 @@ class CreateCoats < ActiveRecord::Migration
   		t.string :color
   		t.integer :size
   		t.decimal :price
-  		t.integer :store_id
 
   		t.timestamps
+  	end
   end
 end

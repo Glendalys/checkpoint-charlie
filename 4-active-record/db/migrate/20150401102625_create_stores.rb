@@ -4,8 +4,8 @@ class CreateStores < ActiveRecord::Migration
   		t.string :name
   		t.string :address
   		t.integer :years_open
-  		t.integer :coat_id
 
   		t.timestamps
+  	end
   end
 end
