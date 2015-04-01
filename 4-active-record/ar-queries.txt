@@ -1,0 +1,19 @@
+Coat.create(:brand => "lucky")
+Store.create(:name => "test")
+Store.first #returns store with name test and all other attributes nil
+
+test = Coat.find_by(brand: "lucky")
+test.color = "blue"
+test.price = 100000
+test.save
+#test returns coat with brand lucky, color blue, price 10000, and all other attributes nil
+test.delete
+
+Coat.all #returns nil because test was deleted
+
+Store.create(:name => "kenny's store", :location => "1112 edgewood lane")
+Store.create(:name => "New Store", :years_since_opened => 5)
+Store.create(:name => "New Store 2", :years_since_opened => 5)
+Store.create(:name => "New Store 3", :years_since_opened => 5)
+
+Store.where(:years_since_opened => 5) #returns new store, new store 2, new store 3 because they all have years_since_opened set to 5
