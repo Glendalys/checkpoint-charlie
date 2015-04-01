@@ -7,4 +7,9 @@ class University
     @application_stats = application_stats
   end
 
+  def acceptance_rate
+    acceptance_rate_float = (@application_stats["accepted"] / @application_stats["applied"].to_f)
+    (acceptance_rate_float * 100).to_i
+  end
+
 end
