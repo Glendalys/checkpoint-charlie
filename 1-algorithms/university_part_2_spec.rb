@@ -8,7 +8,14 @@ describe "Part 2: Acceptance Rate" do
 
   # We'll be taking a look at our old friend "Purdue" again with the same data in part 1a.
   # but you'll still need to fill in this `let` block:
-  let(:university){}
+  let(:university){
+    University.new(name: "Hogwarts",
+                   application_stats: {
+                    'applied' => 100,
+                    'accepted' => 47,
+                    'rejected' => 53
+                    })
+  }
 
   it 'should have an acceptance_rate' do
     expect(university.acceptance_rate).to eq(47)
