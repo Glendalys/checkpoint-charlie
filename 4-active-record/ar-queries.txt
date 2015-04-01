@@ -1,0 +1,76 @@
+irb(main):016:0> CoatStore.all
+
+irb(main):017:0> Coat.all
+
+irb(main):001:0> new_coat = Coat.new(brand: "Nike")
+
+irb(main):002:0> new_coat.brand
+
+irb(main):003:0> new_coat.save
+
+irb(main):001:0> CoatStore.create(name: "Emporium",location:"Downtown",years_since_opened:1)
+
+irb(main):002:0> CoatStore.all
+
+irb(main):003:0> CoatStore.find_by(name: "Emporium")
+
+irb(main):004:0> Coat.create(coat_store_id: 4, brand: "MarcaMejor",color:"black",length:32,price:99.99)
+
+Validations:
+irb(main):001:0> store = CoatStore.new
+irb(main):002:0> store.valid?
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+=> false
+irb(main):003:0> store.errors
+=> #<ActiveModel::Errors:0x007ff65d3dc150 @base=#<CoatStore id: nil, name: nil, location: nil, years_since_opened: nil, created_at: nil, updated_at: nil>, @messages={:name=>["can't be blank"], :location=>["can't be blank"], :years_since_opened=>["is not a number"]}>
+
+
+irb(main):004:0> nice_coat = Coat.new
+irb(main):005:0> nice_coat.valid?
+=> false
+irb(main):006:0> nice_coat.errors
+=> #<ActiveModel::Errors:0x007ff65d1284b8 @base=#<Coat id: nil, coat_store_id: nil, brand: nil, color: nil, length: nil, price: nil, created_at: nil, updated_at: nil>, @messages={:brand=>["can't be blank"], :color=>["can't be blank"], :length=>["is not a number"], :price=>["is not a number"]}>
+
+Belongs_to:
+irb(main):008:0> CoatStore.all
+D, [2015-04-01T11:20:16.856757 #56500] DEBUG -- :   CoatStore Load (0.3ms)  SELECT "coat_stores".* FROM "coat_stores"
+=> #<ActiveRecord::Relation [#<CoatStore id: 1, name: "Emporium", location: "Downtown", years_since_opened: 1, created_at: "2015-04-01 14:56:18", updated_at: "2015-04-01 14:56:18">]>
+irb(main):009:0> coat_at_store_1 = Coat.create(coat_store_id: 1, brand: "Off", color: "Coffee", length:28, price:9999999)
+irb(main):011:0> coat_at_store_1.coat_store
+=> #<CoatStore id: 1, name: "Emporium", location: "Downtown", years_since_opened: 1, created_at: "2015-04-01 14:56:18", updated_at: "2015-04-01 14:56:18">
+
+Has_many:
+
+irb(main):002:0> emporium = CoatStore.find_by(id: 1)
+irb(main):003:0> emporium.name
+irb(main):004:0> emporium.coats
+D, [2015-04-01T11:38:54.871249 #57023] DEBUG -- :   Coat Load (0.2ms)  SELECT "coats".* FROM "coats"  WHERE "coats"."coat_store_id" = ?  [["coat_store_id", 1]]
+=> #<ActiveRecord::Associations::CollectionProxy [#<Coat id: 2, coat_store_id: 1, brand: "Off", color: "Coffee", length: #<BigDecimal:7fe16ba2add8,'0.28E2',9(36)>, price: #<BigDecimal:7fe16ba2ac70,'0.9999999E7',9(36)>, created_at: "2015-04-01 15:22:04", updated_at: "2015-04-01 15:22:04">]>
+irb(main):005:0> emporium.coats.count
+=> 1
+irb(main):006:0> emporium.coats.where(brand: "Off")
+irb(main):008:0> Coat.create(coat_store_id: 1, brand: "Nice", color: "Blue", length: 14, price: 20.00)
+irb(main):009:0> emporium.coats
+irb(main):010:0> emporium.coats.count
+=> 2
+
+
+
+
+
+SQL:
+ CREATE TABLE "coat_stores" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(50) NOT NULL, "location" varchar(75) NOT NULL, "years_since_opened" integer NOT NULL, "created_at" datetime, "updated_at" datetime)
+
+
+ CREATE TABLE "coats" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "coat_store_id" integer NOT NULL, "brand" varchar(50) NOT NULL, "color" varchar(75) NOT NULL, "length" decimal NOT NULL, "price" decimal NOT NULL, "created_at" datetime, "updated_at" datetime)
+
+
+SELECT "coat_stores".* FROM "coat_stores"
+SELECT "coats".* FROM "coats"
+INSERT INTO "coats" ("brand", "created_at", "updated_at") VALUES (?, ?, ?)  [["brand", "Nike"], ["created_at", "2015-04-01 14:49:37.283328"], ["updated_at", "2015-04-01 14:49:37.283328"]]
+INSERT INTO "coat_stores" ("created_at", "location", "name", "updated_at", "years_since_opened") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-04-01 14:56:18.444301"], ["location", "Downtown"], ["name", "Emporium"], ["updated_at", "2015-04-01 14:56:18.444301"], ["years_since_opened", 1]]
+ SELECT "coat_stores".* FROM "coat_stores"
+ SELECT  "coat_stores".* FROM "coat_stores"  WHERE "coat_stores"."name" = 'Emporium' LIMIT 1
+ INSERT INTO "coats" ("brand", "coat_store_id", "color", "created_at", "length", "price", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["brand", "MarcaMejor"], ["coat_store_id", 4], ["color", "black"], ["created_at", "2015-04-01 15:02:19.756037"], ["length", 32.0], ["price", 99.99], ["updated_at", "2015-04-01 15:02:19.756037"]]
+
+
