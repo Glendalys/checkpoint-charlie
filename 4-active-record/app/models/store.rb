@@ -1,4 +1,3 @@
 class Store < ActiveRecord::Base
-  has_many :coats
-  belongs_to :coat, {class_name: "Coat"}
+  has_many :coats, through: :store_coat
 end
