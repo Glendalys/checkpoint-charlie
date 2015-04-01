@@ -7,7 +7,10 @@ class University
     @applied = args["applied"]
     @rejected = args["rejected"]
     @accepted = args["accepted"]
-    @application_stats = [@applied, @rejected, @accepted]
+    @application_stats = {"applied" => @applied,
+     "rejected" => @rejected,
+     "accepted"=> @accepted
+   }
   end
 
   def acceptance_rate
