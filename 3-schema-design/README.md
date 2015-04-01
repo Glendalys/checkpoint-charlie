@@ -25,3 +25,4 @@ Be sure to think through how many tables you need, what the attributes should be
 
 ### To submit
  - Take a screenshot of your schema and add it to your repository.
+ ![schema](coat_store_schema.png)
