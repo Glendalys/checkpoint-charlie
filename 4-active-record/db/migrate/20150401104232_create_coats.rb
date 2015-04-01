@@ -8,3 +8,4 @@ class CreateCoats < ActiveRecord::Migration
     end
   end
 end
+
