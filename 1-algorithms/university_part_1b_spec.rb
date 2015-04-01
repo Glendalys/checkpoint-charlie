@@ -12,7 +12,10 @@ describe "Part 1b: Your Array of Universities" do
   # | Notre Dame | 500       | 220      | 230      |
   # | Toledo     | 404       | 180      | 224      |
 
-  let(:universities) {}
+let(:purdue) {}
+
+ let(:universities) {University.new(name: "Purdue", application_stats: {'rejected' => 90, 'accepted' => 80, 'applied' => 170}), University.new(name: "Indiana", application_stats: {'rejected' => 135, 'accepted' => 165, 'applied' => 300}), University.new(name: "Notre Dame", application_stats: {'rejected' => 220, 'accepted' => 230, 'applied' => 500}), University.new(name: "Toledo", application_stats: {'rejected' => 180, 'accepted' => 224, 'applied' => 404})}
+
 
   it 'should have a length of four' do
     expect(universities.length).to eq(4)
