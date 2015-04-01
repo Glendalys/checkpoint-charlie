@@ -12,3 +12,9 @@ class University
   end
 
 end
+
+#we hate methods in global scope but that's what the spec asks for :-(
+def low_acceptance_count arr
+  (arr.select {|uni| uni.acceptance_rate < 50 }).count
+
+end
