@@ -21,9 +21,8 @@ describe Actor do
     expect(actor.birth_name).to eq("William Bradley Pitt")
   end
 
-  pending 'should have a photo' do
-    #Write a test to show that Actor#photo returns a Photo
-    #Remember to change "pending" to "it" when you're ready to run this test
+  it 'should have a photo' do
+    expect(actor.photo).to be_a Photo
   end
 
   it "the actor's photo should have a name" do
@@ -56,9 +55,8 @@ describe Movie do
     expect(movie.release_year).to eq("1999")
   end
 
-  pending 'should have a photo' do
-    #Write a test to show that Movie#photo returns a Photo
-    #Remember to change "pending" to "it" when you're ready to run this test
+  it 'should have a photo' do
+    expect(movie.photo).to be_a Photo
   end
 
   it "the movie's photo should have a name" do
