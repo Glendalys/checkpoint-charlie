@@ -1,0 +1,78 @@
+Coat.create(brand: "Macy's", color: "blue", length_in_inches: 40, price_in_dollars: 48.28)
+
+Store.create(name: "Storelandia", location: "Brooklyn", years_open: 30)
+
+RUBY:
+class CreateStores < ActiveRecord::Migration
+  def change
+    create_table :stores do |t|
+      t.string :name, :null, false
+      t.string :location, :null, false
+      t.integer :years_open, :numeric, true, :null, false
+
+      t.timestamps
+    end
+  end
+end
+
+SQL:
+
+CREATE TABLE stores
+(
+store_id integer not null,
+name varchar not null,
+location varchar not null,
+years_open integer not null,
+created_at timestamp not null,
+updated_at timestamp not null
+)
+
+RUBY:
+
+class CreateCoats < ActiveRecord::Migration
+  def change
+    create_table :coats do |t|
+      t.string :brand, :null, false
+      t.string :color, :null, false
+      t.integer :length_in_inches, :numeric, true, :null, false
+      t.float :price_in_dollars, :numeric, true, :null, false
+
+      t.timestamps
+    end
+  end
+end
+
+SQL:
+
+SQL:
+
+CREATE TABLE coats
+(
+coat_id integer not null,
+brand varchar not null,
+color varchar not null,
+length_in_inches integer not null,
+length_in_inches real not null,
+created_at timestamp not null,
+updated_at timestamp not null
+)
+
+RUBY:
+
+class CreateStoresCoats < ActiveRecord::Migration
+  def change
+    create_table :stores_coats do |t|
+      t.integer :store_id, :numeric, true, :null, false
+      t.integer :coat_id, :numeric, true, :null, false
+    end
+  end
+end
+
+SQL:
+
+CREATE TABLE stores_coats
+(
+stores_coats_id integer not null,
+store_id integer not null,
+coat_id integer not null
+)
