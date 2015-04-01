@@ -1,0 +1,56 @@
+irb(main):001:0> coat = Coat.new
+=> #<Coat id: nil, brand: nil, color: nil, length: nil, size: nil, store_id: nil, created_at: nil, updated_at: nil>
+irb(main):002:0> coat.store_id = 1
+=> 1
+irb(main):003:0> store = Store.new
+=> #<Store id: nil, name: nil, location: nil, year_opened: nil, created_at: nil, updated_at: nil>
+irb(main):004:0> coat.valid?
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+=> false
+irb(main):005:0> coat.brand = "Gucci"
+=> "Gucci"
+irb(main):006:0> coat.length = 44
+=> 44
+irb(main):007:0> coat.color = "white"
+=> "white"
+irb(main):008:0> store
+=> #<Store id: nil, name: nil, location: nil, year_opened: nil, created_at: nil, updated_at: nil>
+irb(main):009:0> store.name = "Big Lex's Coat Wonder Emporium"
+=> "Big Lex's Coat Wonder Emporium"
+irb(main):010:0> store.location = "NYC, NY City so good they named it twice"
+=> "NYC, NY City so good they named it twice"
+irb(main):011:0> store.year_opened = 2000
+=> 2000
+irb(main):012:0> coat.save
+D, [2015-04-01T11:17:21.351741 #21134] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T11:17:21.355771 #21134] DEBUG -- :   SQL (0.6ms)  INSERT INTO "coats" ("brand", "color", "created_at", "length", "store_id", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["brand", "Gucci"], ["color", "white"], ["created_at", "2015-04-01 15:17:21.352339"], ["length", 44], ["store_id", 1], ["updated_at", "2015-04-01 15:17:21.352339"]]
+D, [2015-04-01T11:17:21.357616 #21134] DEBUG -- :    (1.3ms)  commit transaction
+=> true
+irb(main):013:0> store.save
+D, [2015-04-01T11:17:23.929388 #21134] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T11:17:23.932029 #21134] DEBUG -- :   SQL (0.6ms)  INSERT INTO "stores" ("created_at", "location", "name", "updated_at", "year_opened") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-04-01 15:17:23.929877"], ["location", "NYC, NY City so good they named it twice"], ["name", "Big Lex's Coat Wonder Emporium"], ["updated_at", "2015-04-01 15:17:23.929877"], ["year_opened", 2000]]
+D, [2015-04-01T11:17:23.933854 #21134] DEBUG -- :    (1.2ms)  commit transaction
+=> true
+irb(main):014:0> coat.valid?
+=> true
+irb(main):015:0> store.valid?
+=> true
+irb(main):016:0> Coat.all
+D, [2015-04-01T11:17:53.715601 #21134] DEBUG -- :   Coat Load (0.2ms)  SELECT "coats".* FROM "coats"
+=> #<ActiveRecord::Relation [#<Coat id: 1, brand: "Gucci", color: "white", length: 42, size: nil, store_id: 1, created_at: "2015-04-01 15:06:52", updated_at: "2015-04-01 15:06:52">, #<Coat id: 2, brand: "Gucci", color: "white", length: 44, size: nil, store_id: 1, created_at: "2015-04-01 15:17:21", updated_at: "2015-04-01 15:17:21">]>
+irb(main):017:0> Store.all
+D, [2015-04-01T11:17:56.963984 #21134] DEBUG -- :   Store Load (0.2ms)  SELECT "stores".* FROM "stores"
+=> #<ActiveRecord::Relation [#<Store id: 1, name: "Big Lex's Coat Wonder Emporium", location: "NYC, NY City so good they named it twice", year_opened: 2000, created_at: "2015-04-01 15:17:23", updated_at: "2015-04-01 15:17:23">]>
+
+-----
+irb(main):018:0> StoresCoat.all
+NoMethodError: undefined method `arity' for :coats:Symbol
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/associations/builder/association.rb:63:in `initialize'
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/associations/builder/association.rb:46:in `new'
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/associations/builder/association.rb:46:in `create_builder'
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/associations/builder/association.rb:35:in `build'
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/associations.rb:1433:in `belongs_to'
+  from /Users/alexeimihalopoulos/Desktop/DBC/week-3/checkpoint-charlie/4-active-record/app/models/stores_coat.rb:3:in `<class:StoresCoat>'
+  from /Users/alexeimihalopoulos/Desktop/DBC/week-3/checkpoint-charlie/4-active-record/app/models/stores_coat.rb:1:in `<top (required)>'
+  from (irb):18
+  from /Users/alexeimihalopoulos/.rbenv/versions/2.0.0-p481/bin/irb:12:in `<main>'
