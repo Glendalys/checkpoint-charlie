@@ -101,12 +101,13 @@ namespace :generate do
 
     puts "Creating #{path}"
     File.open(path, 'w+') do |f|
-      f.write(<<-EOF.strip_heredoc)
+      string = <<-EOF
         class #{name} < ActiveRecord::Migration
           def change
           end
         end
       EOF
+      f.write(string)
     end
   end
 
@@ -126,12 +127,14 @@ namespace :generate do
 
     puts "Creating #{path}"
     File.open(path, 'w+') do |f|
-      f.write(<<-EOF.strip_heredoc)
-        require 'spec_helper'
-        describe #{name} do
-          pending "add some examples to (or delete) #{__FILE__}"
-        end
-      EOF
+    string = <<-EOF
+    require 'spec_helper'
+    describe #{name} do
+      pending "add some examples to (or delete) #{__FILE__}"
+    end
+    EOF
+    f.write(string)
+
     end
   end
 
