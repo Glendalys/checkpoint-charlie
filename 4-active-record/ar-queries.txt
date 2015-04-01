@@ -1,0 +1,108 @@
+irb(main):001:0> Store.all
+D, [2015-04-01T10:44:11.598693 #35538] DEBUG -- :   Store Load (0.8ms)  SELECT "stores".* FROM "stores"
+=> #<ActiveRecord::Relation []>
+irb(main):002:0> Store.count
+D, [2015-04-01T10:45:30.381062 #35538] DEBUG -- :    (0.2ms)  SELECT COUNT(*) FROM "stores"
+=> 0
+irb(main):003:0> Store.create(location: 'Manhattan, NY', years_since_opened: 5, sq_footage: 2000)
+D, [2015-04-01T10:47:01.921591 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:47:01.925083 #35538] DEBUG -- :   SQL (0.4ms)  INSERT INTO "stores" ("location", "sq_footage", "years_since_opened") VALUES (?, ?, ?)  [["location", "Manhattan, NY"], ["sq_footage", 2000], ["years_since_opened", 5]]
+D, [2015-04-01T10:47:01.928959 #35538] DEBUG -- :    (3.5ms)  commit transaction
+=> #<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>
+irb(main):004:0> Store.first
+D, [2015-04-01T10:47:05.758538 #35538] DEBUG -- :   Store Load (0.4ms)  SELECT  "stores".* FROM "stores"   ORDER BY "stores"."id" ASC LIMIT 1
+=> #<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>
+irb(main):005:0> Store.count
+D, [2015-04-01T10:47:10.837276 #35538] DEBUG -- :    (0.2ms)  SELECT COUNT(*) FROM "stores"
+=> 1
+irb(main):006:0> Store.create(location: 'Seoul, Korea', years_since_opened: 1, sq_footage: 500)
+D, [2015-04-01T10:47:58.693286 #35538] DEBUG -- :    (0.2ms)  begin transaction
+D, [2015-04-01T10:47:58.694895 #35538] DEBUG -- :   SQL (0.5ms)  INSERT INTO "stores" ("location", "sq_footage", "years_since_opened") VALUES (?, ?, ?)  [["location", "Seoul, Korea"], ["sq_footage", 500], ["years_since_opened", 1]]
+D, [2015-04-01T10:47:58.697569 #35538] DEBUG -- :    (2.3ms)  commit transaction
+=> #<Store id: 2, location: "Seoul, Korea", years_since_opened: 1, sq_footage: 500>
+irb(main):007:0> Store.create(location: 'Sao Paulo, Brazil', years_since_opened: 2, sq_footage: 600)
+D, [2015-04-01T10:48:34.742150 #35538] DEBUG -- :    (0.3ms)  begin transaction
+D, [2015-04-01T10:48:34.743666 #35538] DEBUG -- :   SQL (0.7ms)  INSERT INTO "stores" ("location", "sq_footage", "years_since_opened") VALUES (?, ?, ?)  [["location", "Sao Paulo, Brazil"], ["sq_footage", 600], ["years_since_opened", 2]]
+D, [2015-04-01T10:48:34.746195 #35538] DEBUG -- :    (2.2ms)  commit transaction
+=> #<Store id: 3, location: "Sao Paulo, Brazil", years_since_opened: 2, sq_footage: 600>
+irb(main):008:0> Store.count
+D, [2015-04-01T10:48:37.453012 #35538] DEBUG -- :    (0.2ms)  SELECT COUNT(*) FROM "stores"
+=> 3
+irb(main):009:0> Store.save
+NoMethodError: undefined method `save' for #<Class:0x007fecaa91c6e0>
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/dynamic_matchers.rb:26:in `method_missing'
+  from (irb):9
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/bin/irb:12:in `<main>'
+irb(main):010:0> Store.each {|s| s.save}
+NoMethodError: undefined method `each' for #<Class:0x007fecaa91c6e0>
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/dynamic_matchers.rb:26:in `method_missing'
+  from (irb):10
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/bin/irb:12:in `<main>'
+irb(main):011:0> Store.first
+D, [2015-04-01T10:49:33.262713 #35538] DEBUG -- :   Store Load (0.2ms)  SELECT  "stores".* FROM "stores"   ORDER BY "stores"."id" ASC LIMIT 1
+=> #<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>
+irb(main):012:0> manhattan = Store[0]
+NoMethodError: undefined method `[]' for #<Class:0x007fecaa91c6e0>
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/lib/ruby/gems/2.0.0/gems/activerecord-4.1.4/lib/active_record/dynamic_matchers.rb:26:in `method_missing'
+  from (irb):12
+  from /Users/pH-1/.rbenv/versions/2.0.0-p481/bin/irb:12:in `<main>'
+irb(main):013:0> manhattan = Store.first
+D, [2015-04-01T10:49:53.279207 #35538] DEBUG -- :   Store Load (0.2ms)  SELECT  "stores".* FROM "stores"   ORDER BY "stores"."id" ASC LIMIT 1
+=> #<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>
+irb(main):014:0> manhattan
+=> #<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>
+irb(main):015:0> manhattan.save
+D, [2015-04-01T10:50:03.415015 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:50:03.415472 #35538] DEBUG -- :    (0.1ms)  commit transaction
+=> true
+irb(main):016:0> Store.all
+D, [2015-04-01T10:50:22.463625 #35538] DEBUG -- :   Store Load (0.2ms)  SELECT "stores".* FROM "stores"
+=> #<ActiveRecord::Relation [#<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>, #<Store id: 2, location: "Seoul, Korea", years_since_opened: 1, sq_footage: 500>, #<Store id: 3, location: "Sao Paulo, Brazil", years_since_opened: 2, sq_footage: 600>]>
+irb(main):017:0> Store.all.each do |s| s.save end
+D, [2015-04-01T10:50:35.296399 #35538] DEBUG -- :   Store Load (0.3ms)  SELECT "stores".* FROM "stores"
+D, [2015-04-01T10:50:35.296964 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:50:35.297559 #35538] DEBUG -- :    (0.1ms)  commit transaction
+D, [2015-04-01T10:50:35.298043 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:50:35.298585 #35538] DEBUG -- :    (0.1ms)  commit transaction
+D, [2015-04-01T10:50:35.298821 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:50:35.299252 #35538] DEBUG -- :    (0.1ms)  commit transaction
+=> [#<Store id: 1, location: "Manhattan, NY", years_since_opened: 5, sq_footage: 2000>, #<Store id: 2, location: "Seoul, Korea", years_since_opened: 1, sq_footage: 500>, #<Store id: 3, location: "Sao Paulo, Brazil", years_since_opened: 2, sq_footage: 600>]
+irb(main):018:0> Coat.all
+D, [2015-04-01T10:50:42.969629 #35538] DEBUG -- :   Coat Load (0.3ms)  SELECT "coats".* FROM "coats"
+=> #<ActiveRecord::Relation []>
+irb(main):019:0> Coat.create(brand: 'zara', color: 'red', length: 3, price: 120.00)
+D, [2015-04-01T10:51:44.663193 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:51:44.664244 #35538] DEBUG -- :   SQL (0.3ms)  INSERT INTO "coats" ("brand", "color", "length", "price") VALUES (?, ?, ?, ?)  [["brand", "zara"], ["color", "red"], ["length", 3], ["price", 120]]
+D, [2015-04-01T10:51:44.670672 #35538] DEBUG -- :    (6.2ms)  commit transaction
+=> #<Coat id: 1, brand: "zara", color: "red", length: 3, price: 120>
+irb(main):020:0> first= Coat.first
+D, [2015-04-01T10:52:07.585970 #35538] DEBUG -- :   Coat Load (0.2ms)  SELECT  "coats".* FROM "coats"   ORDER BY "coats"."id" ASC LIMIT 1
+=> #<Coat id: 1, brand: "zara", color: "red", length: 3, price: 120>
+irb(main):021:0> first.brand
+=> "zara"
+irb(main):022:0> first.brand = "Zara"
+=> "Zara"
+irb(main):023:0> first.save
+D, [2015-04-01T10:52:17.545846 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:52:17.549253 #35538] DEBUG -- :   SQL (1.6ms)  UPDATE "coats" SET "brand" = ? WHERE "coats"."id" = 1  [["brand", "Zara"]]
+D, [2015-04-01T10:52:17.551090 #35538] DEBUG -- :    (1.5ms)  commit transaction
+=> true
+irb(main):024:0> second = Coat.create(brand: 'Calvin Klein', color: 'Brown', length: '3.5', price: 155.00)
+D, [2015-04-01T10:53:07.612184 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:53:07.613743 #35538] DEBUG -- :   SQL (0.5ms)  INSERT INTO "coats" ("brand", "color", "length", "price") VALUES (?, ?, ?, ?)  [["brand", "Calvin Klein"], ["color", "Brown"], ["length", 3], ["price", 155]]
+D, [2015-04-01T10:53:07.617202 #35538] DEBUG -- :    (3.1ms)  commit transaction
+=> #<Coat id: 2, brand: "Calvin Klein", color: "Brown", length: 3, price: 155>
+irb(main):025:0> second.save
+D, [2015-04-01T10:53:12.186796 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:53:12.187131 #35538] DEBUG -- :    (0.1ms)  commit transaction
+=> true
+irb(main):026:0> third = Coat.create(brand: 'Burberry', color: 'black', length: '4.5', price: 229.99)
+D, [2015-04-01T10:54:18.413130 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:54:18.414373 #35538] DEBUG -- :   SQL (0.5ms)  INSERT INTO "coats" ("brand", "color", "length", "price") VALUES (?, ?, ?, ?)  [["brand", "Burberry"], ["color", "black"], ["length", 4], ["price", 229]]
+D, [2015-04-01T10:54:18.424507 #35538] DEBUG -- :    (9.7ms)  commit transaction
+=> #<Coat id: 3, brand: "Burberry", color: "black", length: 4, price: 229>
+irb(main):027:0> third.save
+D, [2015-04-01T10:54:22.219998 #35538] DEBUG -- :    (0.1ms)  begin transaction
+D, [2015-04-01T10:54:22.220287 #35538] DEBUG -- :    (0.0ms)  commit transaction
+=> true
+irb(main):028:0> exit
