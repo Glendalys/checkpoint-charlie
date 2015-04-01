@@ -43,12 +43,12 @@ describe "Part 1b: Your Array of Universities" do
   end
 
   #What's a good name for this test? Give it one.
-  it 'you need to name this test! #1' do
+  it 'should have all universities in the array be part of the University class' do
     expect(universities.all?{ |university| university.class == University }).to be(true)
   end
 
   #Give a good name for this test too!
-  it 'you need to name this test! #2' do
+  it 'should have application stats (each stat) in every university be greater than 0' do
     stats = universities.map(&:application_stats).map(&:values).flatten.all? { |stat| stat > 0 }
     expect(stats).to be(true)
   end

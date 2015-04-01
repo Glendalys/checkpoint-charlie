@@ -38,7 +38,6 @@ class Photo
     @url = args[:url]
   end
 
-
 end
 
 # args = {
