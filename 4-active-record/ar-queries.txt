@@ -3,11 +3,11 @@ Store.create(name: "Ben's Best Coat Store", location: "Brooklyn, NY", years_sinc
 Coat.create(brand: "Ben's Bustling Coats", color: "red", length: 34, price: 100.23, store_id: 1)
 
 coat = Coat.find(1)
-coat.length = "test"      #=> "test" 
+coat.length = "test"      #=> "test" (It actually forced 0 in the length, since it has to be an integer)
 coat.valid?               #=> false 
 
 store = Store.find(1)
-store.coats               #=>retuns coats at store 1
+store.coats               #=>returns coats at store 1
 
 new_coat = Coat.new(brand: "Ryan's Rival Coats", color: "blue", length: 36, price: 123.42)
 new_coat.create_store(name: "The Other Store", location: "Riverside, CA", years_since_opened: 3)
