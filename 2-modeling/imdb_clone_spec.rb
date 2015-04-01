@@ -21,17 +21,16 @@ describe Actor do
     expect(actor.birth_name).to eq("William Bradley Pitt")
   end
 
-  pending 'should have a photo' do
-    #Write a test to show that Actor#photo returns a Photo
-    #Remember to change "pending" to "it" when you're ready to run this test
+  it 'should have a photo' do
+    expect(actor.photo_name).to eq("oscars")
   end
 
   it "the actor's photo should have a name" do
-    expect(actor.photo.name).to eq("oscars")
+    expect(actor.photo_name).to eq("oscars")
   end
 
   it "the actor's photo should have a url" do
-    expect(actor.photo.url).to eq("http://awesome.com/brad")
+    expect(actor.photo_url).to eq("http://awesome.com/brad")
   end
 end
 
@@ -56,16 +55,15 @@ describe Movie do
     expect(movie.release_year).to eq("1999")
   end
 
-  pending 'should have a photo' do
-    #Write a test to show that Movie#photo returns a Photo
-    #Remember to change "pending" to "it" when you're ready to run this test
+  it 'should have a photo' do
+    expect(movie.photo_name).to eq("poster")
   end
 
   it "the movie's photo should have a name" do
-    expect(movie.photo.name).to eq("poster")
+    expect(movie.photo_name).to eq("poster")
   end
 
   it "the movie's photo should have a url" do
-    expect(movie.photo.url).to eq("http://sweet.com/fight_club")
+    expect(movie.photo_url).to eq("http://sweet.com/fight_club")
   end
 end
