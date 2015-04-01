@@ -10,7 +10,13 @@ describe "Part 1a: A University named Purdue" do
   # | accepted  | 80        |
 
   # You'll need to fill in this `let` block:
-  let(:university) {}
+  args = {
+    name: "Purdue",
+    applied: 170,
+    rejected: 90,
+    accepted: 80
+  }
+  let(:university) {University.new(args)}
 
   it 'should have a name' do
     expect(university.name).to eq("Purdue")
