@@ -5,7 +5,7 @@ class Photo
   attr_reader :name, :url
   def initialize args
     @name = args[:photo_name]
-    @url  =  args[:photo_url]
+    @url  = args[:photo_url]
   end
 end
 

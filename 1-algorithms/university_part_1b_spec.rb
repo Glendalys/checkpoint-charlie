@@ -34,7 +34,7 @@ describe "Part 1b: Your Array of Universities" do
   end
 
   #What's a good name for this test? Give it one.
-  it 'should be an arry of University instances' do
+  it 'should be an array of University instances' do
     expect(universities.all?{ |university| university.class == University }).to be(true)
   end
 
